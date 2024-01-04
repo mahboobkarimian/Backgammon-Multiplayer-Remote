@@ -54,7 +54,7 @@ Wait for the opponent to roll the first dice, then it's your turn to roll.
 
 **Both**:
 
-Who has the bigger value should start the game using the numbers on both rolled dice. After, the two dice will roll per click of the roll button. Dice roll will be disabled for you once you roll and it will be handed over to the opponent.
+Who has the bigger value should start the game. The two dice will roll per click on the roll button. Dice roll will be disabled for you once you roll and it will be handed over to the opponent.
 
 ![Screenshot from Backgammon multiplayer](./Screenshot.png) 
 
