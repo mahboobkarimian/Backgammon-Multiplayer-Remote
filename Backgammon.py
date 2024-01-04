@@ -523,5 +523,6 @@ def on_closing():
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.resizable(width=False, height=False)
+root.title("Backgammon Multiplayer")
 # this creates the loop that makes the window stay 'active'
 root.mainloop()
