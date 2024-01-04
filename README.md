@@ -13,24 +13,22 @@ The game must be played cooperatively as the game logic is not implemented.
 
 ## Installation
 
-Clone the game repository
-
+**Clone the game repository** </br>
 `git clone https://github.com/mahboobkarimian/Backgammon-Multiplayer-Remote.git`
 
-Go to the game directory
-
+**Go to the game directory** </br>
 `cd Backgammon-Multiplayer-Remote`
 
-Create a virtual environment
-
+**Create a virtual environment** </br>
 `python3 -m venv ./`
 
-Install dependencies by pip
-
+**Install dependencies by pip** </br>
 `pip3 install -r requirements.txt`
 
-Run the game
-
+**Run the game** </br>
+Note: Always activate the virtual env before running the game! </br>
+`source bin/activate` </br>
+Now you can run </br>
 `python3 Backgammon.py`
 
 ## How to play
