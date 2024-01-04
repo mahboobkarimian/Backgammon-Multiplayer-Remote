@@ -22,6 +22,9 @@ The game must be played cooperatively as the game logic is not implemented.
 **Create a virtual environment** </br>
 `python3 -m venv ./`
 
+**Activate virtual environment** </br>
+`source bin/activate`
+
 **Install dependencies by pip** </br>
 `pip3 install -r requirements.txt`
 
