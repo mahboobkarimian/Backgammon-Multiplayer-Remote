@@ -45,13 +45,17 @@ Windows: `Scripts\python.exe Backgammon.py`
 
 **Server**:
 
-Open and forward a desired port from your home Internet router to the server machine.
-Run the game GUI, enter the previously opened/forwarded port, and create a server (No need to modify the IP).
+1. Open and forward a desired port from your home Internet router to the server machine.
+2. Run the game GUI, enter the previously opened/forwarded port, and create a server (No need to modify the IP).
+3. Enter a custom access key or let it to be generated randomly.
+4. Share your public IP:PORT and access key with your friend.
+
 
 **Client**:
 
-Get server IP:PORT from your friend. Run the game GUI, enter IP:PORT, and click Connect.
-Wait for the opponent to roll the first dice, then it's your turn to roll.
+1. Get server IP:PORT and access key from your friend.
+2. Run the game GUI, enter IP:PORT, and access key then click Connect.
+3. Wait for the opponent to roll the first dice, then it will be your turn to roll.
 
 **Both**:
 
