@@ -66,6 +66,7 @@ Who has the bigger value should start the game. The two dice will roll per click
 ![Screenshot from Backgammon multiplayer](./Screenshot.png) 
 
 ## TODO
+* Investigate secure token exchange or use TLS
 * Add Doubling dice
 * Display game rounds and points
 * Extend board layouts and check colors
