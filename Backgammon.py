@@ -1,4 +1,6 @@
 import copy
+import datetime
+import string
 import time
 import tkinter as tk
 from tkinter import ttk
@@ -14,6 +16,8 @@ from flask import Flask
 import json, pickle
 from base64 import b64encode, b64decode
 from Crypto.Cipher import ChaCha20
+import jwt
+
 
 # No TLS as we only use IP.
 # Using socket.io meit only data can be encrypted and not events,
@@ -22,6 +26,7 @@ key = b'weareplayingtogetherdearfriends!'
 cipher = ChaCha20.new(key=key)
 
 game_started = -1
+thread_started = False
 last_1st_dice = ""
 
 global_bg = "gray90"
@@ -32,6 +37,25 @@ conn_ip = "0.0.0.0"
 sio = None
 is_server = False
 #################################################
+def authenticate(rx_token=""):
+    date = datetime.datetime.utcnow().date()
+    payload = date.strftime('%m/%d/%Y')
+    secret = ackey.get()
+    token = jwt.encode({"someinfo": payload}, secret, algorithm="HS256")
+    if not is_server:
+        # generated token for client auth
+        return token
+    else:
+        # check token validity
+        try:
+            dec_rx_token = jwt.decode(rx_token, secret, algorithms=["HS256"])
+        except:
+            print("Can't decode token!")
+            return False
+        if dec_rx_token['someinfo'] == payload:
+            return True
+        else:
+            return False
 
 def enc_dec(data, dec=False):
     global cipher
@@ -55,9 +79,20 @@ def enc_dec(data, dec=False):
             print("Incorrect decryption")
             return None
 
+client_authed = False
+def set_client_authed(flag):
+    global client_authed
+    client_authed = flag
+def get_client_flag():
+    print(client_authed, "is this")
+    return client_authed
+
 def conn_sock():
     global sio
     global is_server
+    global thread_started
+    thread_started = True
+
     if ipaddress.ip_address(conn_ip).is_private:
     # Server
         print("Creating a server")
@@ -69,6 +104,7 @@ def conn_sock():
         @sio.event
         def connect(sid, environ):
             print('connect ', sid)
+            return
             ip = environ['REMOTE_ADDR']
             Statuslabel.config(text=f"Connection: Opponent Connected {ip}")
 
@@ -76,6 +112,13 @@ def conn_sock():
         def connect(sid, environ, auth):
             print('connect ', sid)
             ip = environ['REMOTE_ADDR']
+            token = environ.get('HTTP_AUTHORIZATION')
+            print('connect ', sid, ip, token, auth)
+            if not authenticate(auth):
+                print("invalid token")
+                sio.disconnect(sid)
+                return
+            sio.emit("authed", "True", to=sid)
             Statuslabel.config(text=f"Connection: Opponent Connected {ip}")
 
         @sio.event
@@ -120,8 +163,17 @@ def conn_sock():
         
         @sio.event
         def connect():
-            print("I'm connected!")
-            Statuslabel.config(text=f"Connection: Connected")
+            print("Connect")
+            if get_client_flag():
+                Statuslabel.config(text=f"Connection: Connected")
+            else:
+                Statuslabel.config(text=f"Connection: Connecting ...")
+
+        @sio.event
+        def authed(data):
+            print("Authed")
+            set_client_authed(flag=True)
+            Statuslabel.config(text=f"Connection: Authed")
 
         @sio.event
         def connect_error(data):
@@ -133,7 +185,7 @@ def conn_sock():
             print("I'm disconnected!")
             Statuslabel.config(text=f"Connection: Disconnected")
         
-        sio.connect(f"http://{conn_ip}:{int(conn_port)}")
+        sio.connect(f"http://{conn_ip}:{int(conn_port)}", auth=authenticate())
 
 t_conn = threading.Thread(target=conn_sock)
 t_conn.daemon=True
@@ -297,10 +349,20 @@ def connect():
         conn_ip = ip
         conn_port = port
         #connect_to(ip, port)
+        if thread_started:
+            print("Closing socket and stoping worker thread")
+            sio.disconnect()
+            sio.connect(f"http://{conn_ip}:{int(conn_port)}", auth=authenticate())
+            return
         t_conn.start()
         if is_server:
             button.config(state=NORMAL)
             Resetbutton.config(state=NORMAL)
+            button1.config(state=DISABLED)
+            letters = string.ascii_uppercase
+            strkey = ''.join(random.choice(letters) for _ in range(8))
+            ackey.delete(0, END)
+            ackey.insert(0, f"{strkey}")
     else:
         print("At least a port shoud be provided e.g. 0.0.0.0:5000")
 
@@ -532,11 +594,17 @@ button = ttk.Button(root, text='Roll Dice', command=rolling_dice, state=DISABLED
 button.place(x=50, y=350)
 
 Playlabel = ttk.Label(root, text="I play as", background=global_bg)
-Playlabel.place(x=20, y=555)
+Playlabel.place(x=20, y=520)
 rd1 = ttk.Radiobutton(root, text = "Blue checks", variable = player_color, value = "blue", width=17)
 rd2 = ttk.Radiobutton(root, text = "Green checks", variable = player_color, value = "green", width=17)
-rd1.place(x=20, y=575)
-rd2.place(x=20, y=600)
+rd1.place(x=20, y=540)
+rd2.place(x=20, y=565)
+
+Portlabel = ttk.Label(root, text="Access KEY", background=global_bg)
+Portlabel.place(x=20, y=595)
+ackey = ttk.Entry(root, width=18, font=('Arial', 12, 'bold'))
+ackey.place(x=20, y=615)
+ackey.insert(0, "ACCESS KEY")
 
 Portlabel = ttk.Label(root, text="Server IP:Port", background=global_bg)
 Portlabel.place(x=20, y=645)
