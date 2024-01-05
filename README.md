@@ -29,15 +29,15 @@ Linux/Mac: `source bin/activate` </br>
 Windows: `Scripts\activate`
 
 **Install dependencies by pip** </br>
-`pip3 install -r requirements.txt`
-
+Linux/Mac: `bin/python3 -m pip install -r requirements.txt` </br>
+Windows: `pip3 install -r requirements.txt`
 **Run the game** </br>
 Note: Always activate the virtual env before running the game! </br>
 Linux/Mac: `source bin/activate` </br>
 Windows: `Scripts\activate`
 
 Now you can run </br>
-Linux/Mac: `python3 Backgammon.py` </br>
+Linux/Mac: `bin/python3 Backgammon.py` </br>
 Windows: `Scripts\python.exe Backgammon.py`
 
 ## How to play
