@@ -2,14 +2,16 @@
 
 This is a Backgammon Multiplayer that enables you to play with your friends over IP networks (e.g. Internet).
 
-## Features and rules
+## Features, rules, and limitations
 
 The game must be played cooperatively as the game logic is not implemented.
+* Multiplayer over network
+* Animated opponent movements
+* Secure client authentication using pre-shared secret and token
 * Server rolls the dice first
 * Opponents should agree on their checks' color before starting the game
-* No automatic check movements
 * No automatic rule applying
-* No TLS
+* No TLS (using socket.io events)
 
 ## Installation
 
