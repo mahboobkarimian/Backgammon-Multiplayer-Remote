@@ -168,15 +168,15 @@ class Stone():
         self.rangezy = rangezy
         self.color = color
 
-    def b_create(self):
+    def g_create(self):
         self.img = PhotoImage(
-            file="./images/brown_stone.PNG")
+            file="./images/green_stone.PNG")
         img3 = canvas.create_image(self.x, self.y, image=self.img)
         return
 
-    def w_create(self):
+    def b_create(self):
         self.img = PhotoImage(
-            file="./images/white_stone.PNG")
+            file="./images/blue_stone.PNG")
         img3 = canvas.create_image(self.x, self.y, image=self.img)
         return
 
@@ -218,53 +218,53 @@ img1 = tk.PhotoImage(file="./images/board.jpg")
 image = canvas.create_image(0, 0, anchor=tk.NW, image=img1)
 
 # Create the stones in the starting position
-B_List = [Stone(655, 50, 655+32, 50+32, 655-32, 50-32, "brown"),
-          Stone(655, 115, 655+32, 115+32, 655-32, 115-32, "brown"),
-          Stone(655, 180, 655+32, 180+32, 655-32, 180-32, "brown"),
-          Stone(655, 245, 655+32, 245+32, 655-32, 245-32, "brown"),
-          Stone(655, 310, 655+32, 310+32, 655-32, 310-32, "brown"),
+B_List = [Stone(655, 50, 655+32, 50+32, 655-32, 50-32, "green"),
+          Stone(655, 115, 655+32, 115+32, 655-32, 115-32, "green"),
+          Stone(655, 180, 655+32, 180+32, 655-32, 180-32, "green"),
+          Stone(655, 245, 655+32, 245+32, 655-32, 245-32, "green"),
+          Stone(655, 310, 655+32, 310+32, 655-32, 310-32, "green"),
 
-          Stone(400, 50, 400+32, 50+32, 400-32, 50-32, "brown"),
-          Stone(400, 115, 400+32, 115+32, 400-32, 115-32, "brown"),
-          Stone(400, 180, 400+32, 180+32, 400-32, 180-32, "brown"),
+          Stone(400, 50, 400+32, 50+32, 400-32, 50-32, "green"),
+          Stone(400, 115, 400+32, 115+32, 400-32, 115-32, "green"),
+          Stone(400, 180, 400+32, 180+32, 400-32, 180-32, "green"),
 
-          Stone(57, 750, 57+32, 750+32, 57-32, 750-32, "brown"),
-          Stone(57, 685, 57+32, 685+32, 57-32, 685-32, "brown"),
-          Stone(57, 620, 57+32, 620+32, 57-32, 620-32, "brown"),
-          Stone(57, 555, 57+32, 555+32, 57-32, 555-32, "brown"),
-          Stone(57, 490, 57+32, 490+32, 57-32, 490-32, "brown"),
+          Stone(57, 750, 57+32, 750+32, 57-32, 750-32, "green"),
+          Stone(57, 685, 57+32, 685+32, 57-32, 685-32, "green"),
+          Stone(57, 620, 57+32, 620+32, 57-32, 620-32, "green"),
+          Stone(57, 555, 57+32, 555+32, 57-32, 555-32, "green"),
+          Stone(57, 490, 57+32, 490+32, 57-32, 490-32, "green"),
 
-          Stone(1088, 750, 1088+32, 750+32, 1088-32, 750-32, "brown"),
-          Stone(1088, 685, 1088+32, 685+32, 1088-32, 685-32, "brown"),
+          Stone(1088, 750, 1088+32, 750+32, 1088-32, 750-32, "green"),
+          Stone(1088, 685, 1088+32, 685+32, 1088-32, 685-32, "green"),
 
-          Stone(655, 750, 655+32, 750+32, 655-32, 750-32, "white"),
-          Stone(655, 685, 655 + 32, 685 + 32, 655 - 32, 685 - 32, "white"),
-          Stone(655, 620, 655 + 32, 620 + 32, 655 - 32, 620 - 32, "white"),
-          Stone(655, 555, 655 + 32, 555 + 32, 655 - 32, 555 - 32, "white"),
-          Stone(655, 490, 655 + 32, 490 + 32, 655 - 32, 490 - 32, "white"),
+          Stone(655, 750, 655+32, 750+32, 655-32, 750-32, "blue"),
+          Stone(655, 685, 655 + 32, 685 + 32, 655 - 32, 685 - 32, "blue"),
+          Stone(655, 620, 655 + 32, 620 + 32, 655 - 32, 620 - 32, "blue"),
+          Stone(655, 555, 655 + 32, 555 + 32, 655 - 32, 555 - 32, "blue"),
+          Stone(655, 490, 655 + 32, 490 + 32, 655 - 32, 490 - 32, "blue"),
 
-          Stone(400, 750, 400+32, 750+32, 400-32, 750-32, "white"),
-          Stone(400, 685, 400+32, 685+32, 400-32, 685-32, "white"),
-          Stone(400, 620, 400+32, 620+32, 400-32, 620-32, "white"),
+          Stone(400, 750, 400+32, 750+32, 400-32, 750-32, "blue"),
+          Stone(400, 685, 400+32, 685+32, 400-32, 685-32, "blue"),
+          Stone(400, 620, 400+32, 620+32, 400-32, 620-32, "blue"),
 
-          Stone(57, 50, 57+32, 50+32, 57-32, 50-32, "white"),
-          Stone(57, 115, 57+32, 115+32, 57-32, 115-32, "white"),
-          Stone(57, 180, 57+32, 180+32, 57-32, 180-32, "white"),
-          Stone(57, 245, 57+32, 245+32, 57-32, 245-32, "white"),
-          Stone(57, 310, 57+32, 310+32, 57-32, 310-32, "white"),
+          Stone(57, 50, 57+32, 50+32, 57-32, 50-32, "blue"),
+          Stone(57, 115, 57+32, 115+32, 57-32, 115-32, "blue"),
+          Stone(57, 180, 57+32, 180+32, 57-32, 180-32, "blue"),
+          Stone(57, 245, 57+32, 245+32, 57-32, 245-32, "blue"),
+          Stone(57, 310, 57+32, 310+32, 57-32, 310-32, "blue"),
 
-          Stone(1088, 50, 1088+32, 50+32, 1088-32, 50-32, "white"),
-          Stone(1088, 115, 1088+32, 115+32, 1088-32, 115-32, "white"),
+          Stone(1088, 50, 1088+32, 50+32, 1088-32, 50-32, "blue"),
+          Stone(1088, 115, 1088+32, 115+32, 1088-32, 115-32, "blue"),
 
           Stone(1600, 1600, 1600+65, 1600+65, 0, 0, "dummy")]
 
 
-# Put the stones in game board (by slicing-brown stones 0-15, white stones 15-31)
+# Put the stones in game board (by slicing-green stones 0-15, blue stones 15-31)
 for obj in B_List[0:15]:
-    obj.b_create()
+    obj.g_create()
 
 for obj in B_List[15:31]:
-    obj.w_create()
+    obj.b_create()
 
 def connect():
     global conn_port
@@ -390,17 +390,17 @@ def move(event):
 
     if B_List[p].get_color() != player_color.get():
         return
-    if (p != None) and (B_List[p].get_color() == "brown"): # p cannot contains None
-     t = PhotoImage(file="./images/brown_stone.PNG")
+    if (p != None) and (B_List[p].get_color() == "green"): # p cannot contains None
+     t = PhotoImage(file="./images/green_stone.PNG")
      image1 = canvas.create_image(event.x, event.y, image=t)
      for obj in B_List[0:15]: # Refresh the stones after the move event
-        obj.b_create()
+        obj.g_create()
 
-    if (p != None) and (B_List[p].get_color() == "white"):
-      r = PhotoImage(file="./images/white_stone.PNG")
+    if (p != None) and (B_List[p].get_color() == "blue"):
+      r = PhotoImage(file="./images/blue_stone.PNG")
       image11 = canvas.create_image(event.x, event.y, image=r)
       for obj in B_List[15:31]:
-        obj.w_create()
+        obj.b_create()
 
 
 # Function to save the coordinates after the click
@@ -422,10 +422,10 @@ def click(event):
     if B_List[p].get_color() != player_color.get():
             return
     # Remove the stone from the canvas after click
-    if (p != None) and (B_List[p].get_color() == "brown"):
-        B_List[p] = Stone(1600, 1600, 0, 0, 0, 0,"brown")
-    elif (p != None) and (B_List[p].get_color() == "white"):
-        B_List[p] = Stone(1600, 1600, 0, 0, 0, 0, "white")
+    if (p != None) and (B_List[p].get_color() == "green"):
+        B_List[p] = Stone(1600, 1600, 0, 0, 0, 0,"green")
+    elif (p != None) and (B_List[p].get_color() == "blue"):
+        B_List[p] = Stone(1600, 1600, 0, 0, 0, 0, "blue")
 
 
 # Function to save the coordinates after release the click
@@ -443,10 +443,10 @@ def release(event):
             yclick = event.y
             print(xclick, yclick)
             # Update the new coordinates after release
-            if (p != None) and (B_List[p].get_color() == "brown"):
-                B_List[p] = Stone(xclick, yclick, xclick + 32, yclick + 32, xclick - 32, yclick - 32,"brown")
-            elif (p != None) and (B_List[p].get_color() == "white"):
-                B_List[p] = Stone(xclick, yclick, xclick + 32, yclick + 32, xclick - 32, yclick - 32, "white")
+            if (p != None) and (B_List[p].get_color() == "green"):
+                B_List[p] = Stone(xclick, yclick, xclick + 32, yclick + 32, xclick - 32, yclick - 32,"green")
+            elif (p != None) and (B_List[p].get_color() == "blue"):
+                B_List[p] = Stone(xclick, yclick, xclick + 32, yclick + 32, xclick - 32, yclick - 32, "blue")
             if sio:
                 print("sending the poses")
                 sio.emit("pos", [p, xclick, yclick, B_List[p].get_color()])
@@ -456,14 +456,37 @@ def move_opponent(p_check, xpos, ypos, color):
     check = p_check
     print("opponent move", check, xpos, ypos)
     # Update the new coordinates after release
-    if color == "brown":
-        B_List[check] = Stone(xpos, ypos, xpos + 32, ypos + 32, xpos - 32, ypos - 32,"brown")
+    s0 = B_List[check]
+    x0 = int(s0.x)
+    y0 = int(s0.y)
+    slope = None
+    if xpos - x0: # slope can't be infinte!
+        slope = (ypos - y0)/(xpos - x0)
+    stepx = -1 if xpos - x0 < 0 else 1
+    stepy = -1 if ypos - y0 < 0 else 1
+    
+    if slope: # moving in x, or both direction
+        waypoints = range(x0, xpos+stepx, stepx)
+        if abs((xpos - x0)) > 300:
+            waypoints = list(range(x0, xpos, stepx*(abs((xpos - x0))//150)))
+            waypoints[-1] = xpos
+        for x in waypoints:
+            y = slope*(x-x0)+y0
+            B_List[check] = Stone(x, y, x + 32, y + 32, x - 32, y - 32,color)
+            t = PhotoImage(file=f"./images/{color}_stone.PNG")
+            canvas.create_image(x, y, image=t)
+            #time.sleep(0.01)
+    else: # only moving in y direction
+        for y in range(y0, ypos+stepy, stepy):
+            B_List[check] = Stone(x0, y, x0 + 32, y + 32, x0 - 32, y - 32,color)
+            t = PhotoImage(file=f"./images/{color}_stone.PNG")
+            canvas.create_image(x0, y, image=t)
+    if color == "green":
         for obj in B_List[0:15]: # Refresh the stones after the move event
-            obj.b_create()
-    elif color == "white":
-        B_List[check] = Stone(xpos, ypos, xpos + 32, ypos + 32, xpos - 32, ypos - 32, "white")
+            obj.g_create()
+    elif color == "blue":
         for obj in B_List[15:31]:
-            obj.w_create()
+            obj.b_create()
 
 
 # Function to check if the coordinates after the click is belong to the stones or game board
@@ -488,8 +511,8 @@ button.place(x=50, y=350)
 
 Playlabel = ttk.Label(root, text="I play as", background=global_bg)
 Playlabel.place(x=20, y=555)
-rd1 = ttk.Radiobutton(root, text = "White checks", variable = player_color, value = "white", width=17)
-rd2 = ttk.Radiobutton(root, text = "Brown checks", variable = player_color, value = "brown", width=17)
+rd1 = ttk.Radiobutton(root, text = "Blue checks", variable = player_color, value = "blue", width=17)
+rd2 = ttk.Radiobutton(root, text = "Green checks", variable = player_color, value = "green", width=17)
 rd1.place(x=20, y=575)
 rd2.place(x=20, y=600)
 
