@@ -112,6 +112,11 @@ def conn_sock():
         def dice(data):
             print("dice rx", data)
             start_dice(data[0], data[1])
+
+        @sio.event
+        def reset(data):
+            print("reset cmd rx")
+            reset_game()
         
         @sio.event
         def connect():
@@ -274,10 +279,12 @@ setgame()
 
 def reset_game():
     global B_List
-    if messagebox.askokcancel("Reset", "Do you really want to reset the game?"):
+    if messagebox.askokcancel("Reset", "A reset has been requested, agreed?"):
         B_List.clear()
         B_List = copy.deepcopy(B_List_bkp)
         setgame()
+        if is_server and sio:
+            sio.emit("reset", "")
 
 
 def connect():
