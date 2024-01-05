@@ -1,3 +1,4 @@
+import copy
 import time
 import tkinter as tk
 from tkinter import ttk
@@ -259,13 +260,25 @@ B_List = [Stone(655, 50, 655+32, 50+32, 655-32, 50-32, "green"),
 
           Stone(1600, 1600, 1600+65, 1600+65, 0, 0, "dummy")]
 
+B_List_bkp = copy.deepcopy(B_List)
 
 # Put the stones in game board (by slicing-green stones 0-15, blue stones 15-31)
-for obj in B_List[0:15]:
-    obj.g_create()
+def setgame():
+    for obj in B_List[0:15]:
+        obj.g_create()
 
-for obj in B_List[15:31]:
-    obj.b_create()
+    for obj in B_List[15:31]:
+        obj.b_create()
+    
+setgame()
+
+def reset_game():
+    global B_List
+    if messagebox.askokcancel("Reset", "Do you really want to reset the game?"):
+        B_List.clear()
+        B_List = copy.deepcopy(B_List_bkp)
+        setgame()
+
 
 def connect():
     global conn_port
@@ -280,6 +293,7 @@ def connect():
         t_conn.start()
         if is_server:
             button.config(state=NORMAL)
+            Resetbutton.config(state=NORMAL)
     else:
         print("At least a port shoud be provided e.g. 0.0.0.0:5000")
 
@@ -525,6 +539,11 @@ ntp.place(x=20, y=665)
 
 button1 = ttk.Button(root, text='Connect / Create Server', command=connect)
 button1.place(x=20, y=700)
+
+style = ttk.Style()
+style.configure('Custom.TButton' ,background='red', foreground='red')
+Resetbutton = ttk.Button(root, text='Reset game', command=reset_game, state=DISABLED, style='Custom.TButton')
+Resetbutton.place(x=20, y=740)
 
 Statuslabel = ttk.Label(root, text="Connection: Unknown", background=global_bg)
 Statuslabel.place(x=20, y=825)
