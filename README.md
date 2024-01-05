@@ -31,6 +31,7 @@ Windows: `Scripts\activate`
 **Install dependencies by pip** </br>
 Linux/Mac: `bin/python3 -m pip install -r requirements.txt` </br>
 Windows: `pip3 install -r requirements.txt`
+
 **Run the game** </br>
 Note: Always activate the virtual env before running the game! </br>
 Linux/Mac: `source bin/activate` </br>
