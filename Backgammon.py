@@ -2,6 +2,7 @@ import time
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import random
 from ttkthemes import ThemedTk
@@ -529,20 +530,21 @@ Statuslabel = ttk.Label(root, text="Connection: Unknown", background=global_bg)
 Statuslabel.place(x=20, y=825)
 
 def on_closing():
-    if sio:
-        if is_server:
+    if messagebox.askokcancel("Exit", "Do you really want to exit?"):
+        if sio:
+            if is_server:
+                try:
+                    sio.shutdown()
+                except:
+                    print("Error in shutting down the server")
+            elif sio.connected:
+                sio.disconnect()
+        """ if t_conn.is_alive():
             try:
-                sio.shutdown()
+                t_conn.join()
             except:
-                print("Error in shutting down the server")
-        elif sio.connected:
-            sio.disconnect()
-    """ if t_conn.is_alive():
-        try:
-            t_conn.join()
-        except:
-            print("Error in shutting down the server") """
-    root.destroy()
+                print("Error in shutting down the server") """
+        root.destroy()
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.resizable(width=False, height=False)
