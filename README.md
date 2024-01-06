@@ -7,7 +7,7 @@ This is a Backgammon Multiplayer that enables you to play with your friends over
 The game must be played cooperatively as the game logic is not implemented.
 * Multiplayer over network
 * Animated opponent movements
-* Secure client authentication using pre-shared secret and token
+* One-Time tokan client authentication using pre-shared secret
 * Server rolls the dice first
 * Opponents should agree on their checks' color before starting the game
 * No automatic rule applying

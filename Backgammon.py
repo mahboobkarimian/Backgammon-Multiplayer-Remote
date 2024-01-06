@@ -1,5 +1,5 @@
 import copy
-import datetime
+from datetime import datetime, timezone
 import string
 import time
 import tkinter as tk
@@ -24,6 +24,7 @@ import jwt
 # so one should use send function if he/she wants full encryption.
 key = b'weareplayingtogetherdearfriends!'
 cipher = ChaCha20.new(key=key)
+used_tokens=set()
 
 game_started = -1
 thread_started = False
@@ -38,8 +39,8 @@ sio = None
 is_server = False
 #################################################
 def authenticate(rx_token=""):
-    date = datetime.datetime.utcnow().date()
-    payload = date.strftime('%m/%d/%Y')
+    timestamp = int(datetime.now(timezone.utc).timestamp())
+    payload = str(timestamp)
     secret = ackey.get()
     token = jwt.encode({"someinfo": payload}, secret, algorithm="HS256")
     if not is_server:
@@ -52,7 +53,17 @@ def authenticate(rx_token=""):
         except:
             print("Can't decode token!")
             return False
-        if dec_rx_token['someinfo'] == payload:
+        
+        # check OT token
+        if rx_token not in used_tokens:
+            used_tokens.add(rx_token)
+        else:
+            print("One time token is used before")
+            return False
+
+        # check token age (must not be older than 5 sec)
+        if timestamp - int(dec_rx_token['someinfo']) < 5:
+            #print(timestamp, int(dec_rx_token['someinfo']))
             return True
         else:
             return False
@@ -185,7 +196,7 @@ def conn_sock():
             print("I'm disconnected!")
             Statuslabel.config(text=f"Connection: Disconnected")
         
-        sio.connect(f"http://{conn_ip}:{int(conn_port)}", auth=authenticate())
+        sio.connect(f"http://{conn_ip}:{int(conn_port)}", auth=authenticate)
 
 t_conn = threading.Thread(target=conn_sock)
 t_conn.daemon=True
