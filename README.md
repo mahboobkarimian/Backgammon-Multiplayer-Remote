@@ -30,7 +30,13 @@ Open a Terminal in Linux (cmd in Windows), and follow the instructions.
 Linux/Mac: `source bin/activate` </br>
 Windows: `Scripts\activate`
 
-**Install dependencies by pip** </br>
+**Install dependencies** </br>
+If you don't have Tikinter (system wide): </br>
+Debian/Ubuntu: `sudo apt install python3-tk` </br>
+Windows: `pip3 install tikinter`
+
+Then run:
+
 Linux/Mac: `bin/python3 -m pip install -r requirements.txt` </br>
 Windows: `pip3 install -r requirements.txt`
 
