@@ -196,7 +196,7 @@ def conn_sock():
             print("I'm disconnected!")
             Statuslabel.config(text=f"Connection: Disconnected")
         
-        sio.connect(f"http://{conn_ip}:{int(conn_port)}", auth=authenticate)
+        sio.connect(f"http://127.0.0.1:{int(conn_port)}", auth=authenticate)
 
 t_conn = threading.Thread(target=conn_sock)
 t_conn.daemon=True
@@ -223,6 +223,8 @@ canvas.place(x=250, y=20)
 dice1 = ['./images/Dice-1.png', './images/Dice-2.png', './images/Dice-3.png', './images/Dice-4.png', './images/Dice-5.png', './images/Dice-6.png']
 dice2 = dice1.copy()
 
+s_green = PhotoImage(file="./images/green_stone.PNG")
+s_blue = PhotoImage(file="./images/blue_stone.PNG")
 
 # Create class of stone type
 class Stone():
@@ -474,7 +476,6 @@ yclick = 0
 # Define global variable to hold the index of specific stone
 p = 0
 
-
 # Function to hold the image updated when the mouse in move
 def move(event):
 
@@ -486,13 +487,13 @@ def move(event):
     if B_List[p].get_color() != player_color.get():
         return
     if (p != None) and (B_List[p].get_color() == "green"): # p cannot contains None
-     t = PhotoImage(file="./images/green_stone.PNG")
+     t = s_green.copy()
      image1 = canvas.create_image(event.x, event.y, image=t)
      for obj in B_List[0:15]: # Refresh the stones after the move event
         obj.g_create()
 
     if (p != None) and (B_List[p].get_color() == "blue"):
-      r = PhotoImage(file="./images/blue_stone.PNG")
+      r = s_blue.copy()
       image11 = canvas.create_image(event.x, event.y, image=r)
       for obj in B_List[15:31]:
         obj.b_create()
@@ -568,13 +569,13 @@ def move_opponent(p_check, xpos, ypos, color):
         for x in waypoints:
             y = slope*(x-x0)+y0
             B_List[check] = Stone(x, y, x + 32, y + 32, x - 32, y - 32,color)
-            t = PhotoImage(file=f"./images/{color}_stone.PNG")
+            t = s_green.copy() if color == "green" else s_blue.copy()
             canvas.create_image(x, y, image=t)
             #time.sleep(0.01)
     else: # only moving in y direction
         for y in range(y0, ypos+stepy, stepy):
             B_List[check] = Stone(x0, y, x0 + 32, y + 32, x0 - 32, y - 32,color)
-            t = PhotoImage(file=f"./images/{color}_stone.PNG")
+            t = s_green.copy() if color == "green" else s_blue.copy()
             canvas.create_image(x0, y, image=t)
     if color == "green":
         for obj in B_List[0:15]: # Refresh the stones after the move event
