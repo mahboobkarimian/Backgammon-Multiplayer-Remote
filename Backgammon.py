@@ -196,7 +196,7 @@ def conn_sock():
             print("I'm disconnected!")
             Statuslabel.config(text=f"Connection: Disconnected")
         
-        sio.connect(f"http://127.0.0.1:{int(conn_port)}", auth=authenticate)
+        sio.connect(f"http://{conn_ip}:{int(conn_port)}", auth=authenticate)
 
 t_conn = threading.Thread(target=conn_sock)
 t_conn.daemon=True
